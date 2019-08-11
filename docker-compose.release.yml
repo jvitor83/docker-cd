@@ -1,0 +1,15 @@
+version: '3.5'
+
+services:
+  sistema.tjmt.jus.br:
+    build:
+      context: .
+      target: release
+      args:
+        SONARQUBE: http://192.168.0.13:9000
+        SONARQUBE_PROJECT: sistema.tjmt.jus.br
+      cache_from:
+        - sistema.tjmt.jus.br:${VERSION-latest}${LIFECYCLE_VERSION}-build
+        - sistema.tjmt.jus.br:${VERSION-latest}${LIFECYCLE_VERSION}
+    ports:
+      - 8080:4200
