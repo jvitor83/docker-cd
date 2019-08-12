@@ -1,0 +1,7 @@
+version: '3.5'
+
+services:
+  sistema.tjmt.jus.br:
+    image: ${DOCKER_REGISTRY}sistema${BRANCH}${ENVIRONMENT}.tjmt.jus.br:${VERSION:-latest}${LIFECYCLE_VERSION}-base
+    build:
+      target: base

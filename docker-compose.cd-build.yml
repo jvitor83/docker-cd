@@ -2,16 +2,6 @@ version: '3.5'
 
 services:
   sistema.tjmt.jus.br:
-    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION-latest}${LIFECYCLE_VERSION}-build
+    image: ${DOCKER_REGISTRY}sistema${BRANCH}${ENVIRONMENT}.tjmt.jus.br:${VERSION:-latest}${LIFECYCLE_VERSION}-build
     build:
       target: build
-  #   depends_on:
-  #     - sistema-api.tjmt.jus.br
-
-  # sistema-api.tjmt.jus.br:
-  #   image: suhailtaj/mock-api
-  #   # command: /data/db.json
-  #   volumes:
-  #     - ./db.json:/data/db.json
-  #   ports:
-  #     - 4000:9090

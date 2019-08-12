@@ -2,23 +2,27 @@ version: '3.5'
 
 services:
   sistema.tjmt.jus.br:
-    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION-latest}${LIFECYCLE_VERSION}
+    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}${LIFECYCLE_VERSION}
     build:
       context: .
       cache_from:
-        - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION-latest}${LIFECYCLE_VERSION}-install
-        - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION-latest}${LIFECYCLE_VERSION}-build
-        - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION-latest}${LIFECYCLE_VERSION}-ci
-        - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION-latest}${LIFECYCLE_VERSION}
+        - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}${LIFECYCLE_VERSION}-base
+        - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}${LIFECYCLE_VERSION}-build
+        - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}${LIFECYCLE_VERSION}-ci
+        - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}${LIFECYCLE_VERSION}
     ports:
       - 4200:4200
-    networks:
-      - sistema
     environment:
       SONARQUBE_URL: http://192.168.0.13:9000
       SONARQUBE_PROJECT: sistema.tjmt.jus.br
+      SONARQUBE_VERSION: ${VERSION:-latest}
+    labels:
+      kompose.service.expose: sistema${BRANCH}${ENVIRONMENT}.tjmt.jus.br
+    hostname: sistema${BRANCH}${ENVIRONMENT}.tjmt.jus.br
+    # networks:
+    #   - sistema
 
-
-networks:
-  sistema:
-    name: sistema
+# networks:
+#   sistema:
+# #    internal: true
+#     name: sistema
