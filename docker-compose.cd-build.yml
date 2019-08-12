@@ -2,15 +2,9 @@ version: '3.5'
 
 services:
   sistema.tjmt.jus.br:
-    image: sistema.tjmt.jus.br:${VERSION-latest}${LIFECYCLE_VERSION}-build
+    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION-latest}${LIFECYCLE_VERSION}-build
     build:
-      context: .
       target: build
-      args:
-        SONARQUBE: http://192.168.0.13:9000
-        SONARQUBE_PROJECT: sistema.tjmt.jus.br
-    ports:
-      - 8080:4200
     depends_on:
       - sistema-api.tjmt.jus.br
 

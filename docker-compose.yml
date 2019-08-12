@@ -1,0 +1,19 @@
+version: '3.5'
+
+services:
+  sistema.tjmt.jus.br:
+    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION-latest}${LIFECYCLE_VERSION}
+    build:
+      context: .
+      # target: build
+    ports:
+      - 8080:4200
+    networks:
+      - sistema
+    environment:
+      SONARQUBE_URL: http://192.168.0.13:9000
+      SONARQUBE_PROJECT: sistema.tjmt.jus.br
+
+networks:
+  sistema:
+    name: sistema

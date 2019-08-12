@@ -8,26 +8,16 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
       --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
-RUN npm install -g sonarqube-scanner
 COPY package.json package-lock.json ./
 RUN npm ci
 COPY . ./
-
-ARG SONARQUBE=http://localhost:9000
-ARG SONARQUBE_PROJECT
-ENV SONARQUBE=${SONARQUBE} SONARQUBE_PROJECT=${SONARQUBE_PROJECT}
-
 RUN npm run build
-
 ENTRYPOINT ["./entrypoint.sh"]
 
 
-
 FROM nginx:1.17 as final
-RUN echo 'final'
 COPY --from=build /app/dist/ /usr/share/nginx/html/
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
-
 
 
 FROM bitnami/kubectl:1.15 as release
