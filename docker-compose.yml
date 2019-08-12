@@ -5,14 +5,19 @@ services:
     image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION-latest}${LIFECYCLE_VERSION}
     build:
       context: .
-      # target: build
+      cache_from:
+        - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION-latest}${LIFECYCLE_VERSION}-install
+        - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION-latest}${LIFECYCLE_VERSION}-build
+        - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION-latest}${LIFECYCLE_VERSION}-ci
+        - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION-latest}${LIFECYCLE_VERSION}
     ports:
-      - 8080:4200
+      - 4200:4200
     networks:
       - sistema
     environment:
       SONARQUBE_URL: http://192.168.0.13:9000
       SONARQUBE_PROJECT: sistema.tjmt.jus.br
+
 
 networks:
   sistema:

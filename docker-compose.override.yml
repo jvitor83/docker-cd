@@ -3,8 +3,4 @@ version: '3.5'
 services:
   sistema.tjmt.jus.br:
     build:
-      cache_from:
-        - sistema.tjmt.jus.br:${VERSION-latest}${LIFECYCLE_VERSION}-install
-        - sistema.tjmt.jus.br:${VERSION-latest}${LIFECYCLE_VERSION}-build
-        - sistema.tjmt.jus.br:${VERSION-latest}${LIFECYCLE_VERSION}-ci
-        - sistema.tjmt.jus.br:${VERSION-latest}${LIFECYCLE_VERSION}
+      target: final
