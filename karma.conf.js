@@ -32,6 +32,7 @@ module.exports = function (config) {
                 '--headless',
                 '--disable-gpu',
                 '--remote-debugging-port=9222',
+                '--disable-extensions',
               ],
             }
       },

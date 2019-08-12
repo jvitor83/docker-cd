@@ -11,3 +11,13 @@ services:
         SONARQUBE_PROJECT: sistema.tjmt.jus.br
     ports:
       - 8080:4200
+    depends_on:
+      - sistema-api.tjmt.jus.br
+
+  sistema-api.tjmt.jus.br:
+    image: suhailtaj/mock-api
+    command: /usr/data/db.json
+    volumes:
+      - ./db.json:/usr/data/db.json
+    ports:
+      - 4000:9090
