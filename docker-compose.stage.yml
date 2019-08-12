@@ -1,0 +1,10 @@
+version: '3.5'
+
+services:
+  sistema.tjmt.jus.br:
+    image: ${DOCKER_REGISTRY}sistema-stage.tjmt.jus.br:${VERSION:-latest}${LIFECYCLE_VERSION:-rc}
+    labels:
+      kompose.service.expose: sistema-stage.tjmt.jus.br
+    hostname: sistema-stage.tjmt.jus.br
+    environment:
+      - variable: something
