@@ -14,7 +14,7 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private httpClient: HttpClient) {
   }
   ngOnInit(): void {
-    this.subscription.add(this.httpClient.get<string[]>('http://sistema-api.tjmt.jus.br:9090/titles')
+    this.subscription.add(this.httpClient.get<string[]>('http://sistema-api-local.tjmt.jus.br:9090/titles')
       .pipe(map(r => r[0]))
       .pipe(catchError(e => {
         console.error(e);

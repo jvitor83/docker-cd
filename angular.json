@@ -67,7 +67,9 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "docker-cd:build"
+            "browserTarget": "docker-cd:build",
+            "port": 4200,
+            "host": "0.0.0.0"
           },
           "configurations": {
             "production": {

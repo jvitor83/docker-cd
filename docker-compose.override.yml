@@ -2,5 +2,30 @@ version: '3.5'
 
 services:
   sistema.tjmt.jus.br:
+    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}${BRANCH}${ENVIRONMENT:--local}
     build:
-      target: final
+      target: dev
+    environment:
+      RUN_TEST: ${RUN_TEST:-true}
+      RUN_PROJECT: ${RUN_PROJECT:-true}
+    depends_on:
+      - sistema-api.tjmt.jus.br
+    # labels:
+    #   kompose.service.expose: sistema${BRANCH}${ENVIRONMENT:--local}.tjmt.jus.br
+    # container_name: sistema${BRANCH}${ENVIRONMENT:--local}.tjmt.jus.br
+
+  sistema-api.tjmt.jus.br:
+    image: suhailtaj/mock-api:${SISTEMA_API_VERSION:-latest}
+    command: /usr/data/db.json
+    volumes:
+      - ./data/db.json:/usr/data/db.json
+    ports:
+      - 9090:9090
+    labels:
+      kompose.service.expose: sistema-api${BRANCH}${ENVIRONMENT:--local}.tjmt.jus.br
+    container_name: sistema-api${BRANCH}${ENVIRONMENT:--local}.tjmt.jus.br
+
+# networks:
+#   default:
+#     name: sistema
+#     # internal: true

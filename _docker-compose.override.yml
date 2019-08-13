@@ -1,0 +1,11 @@
+version: '3.5'
+
+services:
+  sistema.tjmt.jus.br:
+    build:
+      target: dev
+    environment:
+      RUN_TEST: ${RUN_TEST:-true}
+    labels:
+      kompose.service.expose: sistema${BRANCH}${ENVIRONMENT:-local}.tjmt.jus.br
+    hostname: sistema${BRANCH}${ENVIRONMENT:-local}.tjmt.jus.br
