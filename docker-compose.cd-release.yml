@@ -1,6 +1,11 @@
 version: '3.5'
 
 services:
-  sistema.tjmt.jus.br:
+  sistema-tjmt-jus-br:
     build:
       target: publish
+    environment:
+      ENVIRONMENT: ${ENVIRONMENT:-dev}
+      COMPOSE_FILENAME: docker-compose-${COMPOSE_SUFFIX_FILENAME:-dev}.yml
+    volumes:
+      - ./kubeconfig:/bitnami/kubeconfig

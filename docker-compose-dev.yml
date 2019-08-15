@@ -1,0 +1,22 @@
+version: '3.5'
+
+services:
+  sistema-tjmt-jus-br:
+    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}${BRANCH}-${ENVIRONMENT:-dev}
+    build:
+      target: ci
+    environment:
+      RUN_TEST: ${RUN_TEST:-false}
+      RUN_PROJECT: ${RUN_PROJECT:-true}
+    labels:
+      kompose.service.expose: sistema${BRANCH}-dev.tjmt.jus.br
+
+  sistema-api-tjmt-jus-br:
+    image: suhailtaj/mock-api:${SISTEMA_API_VERSION:-latest}
+    command: /usr/data/db.json
+    volumes:
+      - ./data/db.json:/usr/data/db.json
+    ports:
+      - 9090:9090
+    labels:
+      kompose.service.expose: sistema-api${BRANCH}-dev.tjmt.jus.br

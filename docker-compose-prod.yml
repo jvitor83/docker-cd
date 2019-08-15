@@ -1,0 +1,8 @@
+version: '3.5'
+
+services:
+  sistema-tjmt-jus-br:
+    image: ${DOCKER_REGISTRY}sistema-stage.tjmt.jus.br:${VERSION:-latest}
+    labels:
+      kompose.service.expose: sistema.tjmt.jus.br
+

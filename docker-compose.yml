@@ -1,29 +1,26 @@
 version: '3.5'
 
 services:
-  sistema.tjmt.jus.br:
-    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}${BRANCH}${ENVIRONMENT:--local}
+  sistema-tjmt-jus-br:
+    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}${BRANCH}${ENVIRONMENT}
     build:
       context: .
       cache_from:
-        - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}${BRANCH}${ENVIRONMENT:--local}-base
-        - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}${BRANCH}${ENVIRONMENT:--local}-dev
-        - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}${BRANCH}${ENVIRONMENT:--local}-build
-        - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}${BRANCH}${ENVIRONMENT:--local}
+        - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}${BRANCH}${ENVIRONMENT}-base
+        - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}${BRANCH}${ENVIRONMENT}-ci
+        - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}${BRANCH}${ENVIRONMENT}-build
+        - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}${BRANCH}${ENVIRONMENT}
     ports:
       - 4200:4200
     environment:
       RUN_TEST: ${RUN_TEST:-false}
       RUN_PROJECT: ${RUN_PROJECT:-false}
       RUN_SONARQUBE: ${RUN_SONARQUBE:-true}
-      SONARQUBE_URL: ${SONARQUBE_URL:-http://localhost:9000}
+      SONARQUBE_URL: ${SONARQUBE_URL:-http://172.17.0.1:9000}
       SONARQUBE_LOGIN: ${SONARQUBE_LOGIN:-admin}
       SONARQUBE_PASSWORD: ${SONARQUBE_PASSWORD:-admin}
       SONARQUBE_PROJECT: sistema.tjmt.jus.br
       SONARQUBE_VERSION: ${VERSION:-latest}
-    labels:
-      kompose.service.expose: sistema${BRANCH}${ENVIRONMENT:--local}.tjmt.jus.br
-    container_name: sistema${BRANCH}${ENVIRONMENT:--local}.tjmt.jus.br
 
 networks:
   default:

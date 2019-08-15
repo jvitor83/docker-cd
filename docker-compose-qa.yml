@@ -1,0 +1,7 @@
+version: '3.5'
+
+services:
+  sistema-tjmt-jus-br:
+    image: ${DOCKER_REGISTRY}sistema-qa.tjmt.jus.br:${VERSION:-latest}${LIFECYCLE_VERSION:-beta}
+    labels:
+      kompose.service.expose: sistema-qa.tjmt.jus.br
