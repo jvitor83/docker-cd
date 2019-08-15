@@ -1,0 +1,7 @@
+version: '3.5'
+
+services:
+  sistema-tjmt-jus-br:
+    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}-build
+    build:
+      target: build

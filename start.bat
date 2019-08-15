@@ -10,11 +10,12 @@ REM echo "Publico a imagem final"
 REM docker-compose -f "docker-compose.yml" -f "docker-compose.cd-release.yml" build
 
 
-echo "Crio a imagem que irá possuir as ferramentas para compilação e execução dos testes"
-docker-compose -f "docker-compose.yml" -f "docker-compose.cd-build.yml" build
-echo "Rodo os testes"
-docker-compose -f "docker-compose.yml" -f "docker-compose.cd-build.yml" up
+echo "Restauro pacotes e Rodo os testes"
+docker-compose -f "docker-compose.yml" -f "docker-compose.cd-build.yml" up --build
+echo "Compilo o projeto e crio o pacote"
+docker-compose -f "docker-compose.yml" -f "docker-compose.cd-publish.yml" build
 echo "Crio a imagem final"
 docker-compose -f "docker-compose.yml" -f "docker-compose.cd-final.yml" build
+
 echo "Publico a imagem final"
-docker-compose -f "docker-compose.yml" -f "docker-compose.cd-release.yml" build
+docker-compose -f "docker-compose.yml" -f "docker-compose.cd-release.yml" up --build

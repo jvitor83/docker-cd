@@ -6,9 +6,8 @@ services:
     build:
       context: .
       cache_from:
-        - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}${BRANCH}${ENVIRONMENT}-base
-        - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}${BRANCH}${ENVIRONMENT}-ci
         - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}${BRANCH}${ENVIRONMENT}-build
+        - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}${BRANCH}${ENVIRONMENT}-publish
         - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}${BRANCH}${ENVIRONMENT}
     ports:
       - 4200:4200
