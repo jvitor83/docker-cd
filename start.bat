@@ -1,21 +1,12 @@
-REM echo "Crio a imagem que irá possuir as ferramentas para compilação e execução dos testes"
-REM docker-compose -f "docker-compose.yml" -f "docker-compose.cd-install.yml" build
-REM echo "Compilo o projeto"
-REM docker-compose -f "docker-compose.yml" -f "docker-compose.cd-build.yml" build
-REM echo "Rodo os testes"
-REM docker-compose -f "docker-compose.yml" -f "docker-compose.cd-ci.yml" up
-REM echo "Crio a imagem final"
-REM docker-compose -f "docker-compose.yml" -f "docker-compose.cd-final.yml" build
-REM echo "Publico a imagem final"
-REM docker-compose -f "docker-compose.yml" -f "docker-compose.cd-release.yml" build
-
-
 echo "Restauro pacotes e Rodo os testes"
-docker-compose -f "docker-compose.yml" -f "docker-compose.cd-build.yml" up --build
+SET BRANCH=-release-123&& docker-compose -f "docker-compose.yml" -f "docker-compose.cd-build.yml" up --build --abort-on-container-exit
 echo "Compilo o projeto e crio o pacote"
-docker-compose -f "docker-compose.yml" -f "docker-compose.cd-publish.yml" build
+SET BRANCH=-release-123&& docker-compose -f "docker-compose.yml" -f "docker-compose.cd-publish.yml" build
 echo "Crio a imagem final"
-docker-compose -f "docker-compose.yml" -f "docker-compose.cd-final.yml" build
-
-echo "Publico a imagem final"
-docker-compose -f "docker-compose.yml" -f "docker-compose.cd-release.yml" up --build
+SET BRANCH=-release-123&& docker-compose -f "docker-compose.yml" -f "docker-compose.cd-final.yml" build
+echo "Publico a imagem final em dev"
+SET ENVIRONMENT=dev&& SET BRANCH=-release-123&& echo "BRANCH %BRANCH%" && docker-compose -f "docker-compose.yml" -f "docker-compose.cd-release.yml" up --build --abort-on-container-exit
+REM echo "Publico a imagem final em qa"
+REM SET ENVIRONMENT=qa&& SET BRANCH=-release-123&& docker-compose -f "docker-compose.yml" -f "docker-compose.cd-release.yml" up --build --abort-on-container-exit
+REM echo "Publico a imagem final em prod"
+REM SET ENVIRONMENT=prod&& docker-compose -f "docker-compose.yml" -f "docker-compose.cd-release.yml" up --build --abort-on-container-exit

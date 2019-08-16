@@ -2,13 +2,13 @@ version: '3.5'
 
 services:
   sistema-tjmt-jus-br:
-    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}${BRANCH}${ENVIRONMENT}
+    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}${BRANCH}
     build:
       context: .
       cache_from:
-        - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}${BRANCH}${ENVIRONMENT}-build
-        - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}${BRANCH}${ENVIRONMENT}-publish
-        - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}${BRANCH}${ENVIRONMENT}
+        - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}${BRANCH}-build
+        - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}${BRANCH}-publish
+        - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}${BRANCH}
     ports:
       - 4200:4200
     environment:
@@ -19,9 +19,9 @@ services:
       SONARQUBE_LOGIN: ${SONARQUBE_LOGIN:-admin}
       SONARQUBE_PASSWORD: ${SONARQUBE_PASSWORD:-admin}
       SONARQUBE_PROJECT: sistema.tjmt.jus.br
-      SONARQUBE_VERSION: ${VERSION:-latest}
+      SONARQUBE_PROJECT_VERSION: ${VERSION:-latest}
 
 networks:
   default:
-    name: sistema
+    name: ns-sistema-${ENVIRONMENT:-local}
 # #    internal: true

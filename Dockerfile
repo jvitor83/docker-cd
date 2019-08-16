@@ -43,10 +43,19 @@ RUN npm run build -- --aot=true --build-optimizer=true --optimization=true --pro
 
 
 FROM nginx:1.17 as final
-COPY --from=build /app/dist/ /usr/share/nginx/html/
+COPY --from=publish /app/dist/ /usr/share/nginx/html/
 EXPOSE 80 443
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
 
 
-FROM publish as release
+FROM build as release
 ENTRYPOINT ["./release.sh"]
+# ARG ENVIRONMENT=dev
+# ARG COMPOSE_FILENAME=docker-compose.${ENVIRONMENT}.yml
+# RUN [[ -f ${COMPOSE_FILENAME} ]] && ./kompose convert -f docker-compose.yml -f ${COMPOSE_FILENAME} \
+# rm -rf *.yml .*.json *.json \
+# for file in *-namespace.yaml; \
+# do \
+#   kubectl --kubeconfig /bitnami/kubeconfig apply -f $file \
+# done; \
+# kubectl --kubeconfig /bitnami/kubeconfig apply -f ./

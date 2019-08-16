@@ -5,7 +5,7 @@ services:
     build:
       target: release
     environment:
-      ENVIRONMENT: ${ENVIRONMENT:-dev}
-      COMPOSE_FILENAME: docker-compose-${COMPOSE_SUFFIX_FILENAME:-dev}.yml
+      BRANCH: ${BRANCH}
+      ENVIRONMENT: ${ENVIRONMENT:-override}
     volumes:
       - ./kubeconfig:/bitnami/kubeconfig

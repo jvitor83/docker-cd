@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
   sistema-tjmt-jus-br:
-    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}${BRANCH}${ENVIRONMENT:--local}
+    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}
     build:
       target: ci
     environment:
@@ -10,7 +10,7 @@ services:
       RUN_PROJECT: ${RUN_PROJECT:-true}
     depends_on:
       - sistema-api-tjmt-jus-br
-    container_name: sistema${BRANCH}${ENVIRONMENT}.tjmt.jus.br
+    container_name: sistema-${ENVIRONMENT:-local}.tjmt.jus.br
 
   sistema-api-tjmt-jus-br:
     image: suhailtaj/mock-api:${SISTEMA_API_VERSION:-latest}
@@ -19,4 +19,4 @@ services:
       - ./data/db.json:/usr/data/db.json
     ports:
       - 9090:9090
-    container_name: sistema-api${BRANCH}${ENVIRONMENT}.tjmt.jus.br
+    container_name: sistema-api-${ENVIRONMENT:-local}.tjmt.jus.br
