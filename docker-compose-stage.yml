@@ -5,7 +5,6 @@ services:
     image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${BRANCH:-develop}.${VERSION:-latest}
     labels:
       kompose.service.expose: sistema-stage.tjmt.jus.br
-    container_name: sistema-stage.tjmt.jus.br
 
 networks:
   default:

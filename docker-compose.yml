@@ -2,13 +2,13 @@ version: '3.5'
 
 services:
   sistema-tjmt-jus-br:
-    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${BRANCH}${VERSION:-latest}
+    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${BRANCH:-develop}.${VERSION:-latest}
     build:
       context: .
-      cache_from:
-        - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${BRANCH}${VERSION:-latest}-build
-        - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${BRANCH}${VERSION:-latest}-publish
-        - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${BRANCH}${VERSION:-latest}
+      # cache_from:
+      #   - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${BRANCH}.${VERSION:-latest}-build
+      #   - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${BRANCH}.${VERSION:-latest}-publish
+      #   - ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${BRANCH}.${VERSION:-latest}
     ports:
       - 4200:4200
     environment:

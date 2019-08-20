@@ -8,7 +8,6 @@ services:
       RUN_PROJECT: ${RUN_PROJECT:-true}
     labels:
       kompose.service.expose: sistema-${BRANCH:-develop}-dev.tjmt.jus.br
-    container_name: sistema-${BRANCH:-develop}-dev.tjmt.jus.br
 
   sistema-api-tjmt-jus-br:
     image: suhailtaj/mock-api:${SISTEMA_API_VERSION:-latest}
@@ -19,7 +18,6 @@ services:
       - 9090:9090
     labels:
       kompose.service.expose: sistema-api-${BRANCH:-develop}-dev.tjmt.jus.br
-    container_name: sistema-api-${BRANCH:-develop}-dev.tjmt.jus.br
 
 networks:
   default:
