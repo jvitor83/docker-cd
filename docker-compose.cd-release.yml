@@ -3,6 +3,7 @@ version: '3.5'
 services:
   sistema-tjmt-jus-br:
     build:
+      context: .
       target: release
     environment:
       DOCKER_REGISTRY: ${DOCKER_REGISTRY}

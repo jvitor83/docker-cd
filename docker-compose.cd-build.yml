@@ -11,6 +11,8 @@ services:
     depends_on:
       - sistema-api-tjmt-jus-br
     container_name: sistema-${BRANCH:-develop}-ci.tjmt.jus.br
+    volumes:
+      - test-result:/TestResults
 
   sistema-api-tjmt-jus-br:
     image: suhailtaj/mock-api:${SISTEMA_API_VERSION:-latest}
@@ -24,3 +26,7 @@ services:
 networks:
   default:
     name: ns-sistema-ci
+
+volumes:
+  test-result:
+    name: ${DOCKERCOMPOSE_CI_VOLUME_NAME:-sistema-test-results}

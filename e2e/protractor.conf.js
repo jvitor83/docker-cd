@@ -13,8 +13,8 @@ const { SpecReporter } = require('jasmine-spec-reporter');
 exports.config = {
   allScriptsTimeout: 11000,
   specs: [
-    './src/**/*.e2e-spec.ts'
-  ],
+    './src/features/**/*.feature'
+],
   capabilities: {
     'browserName': 'chrome',
     chromeOptions: {
@@ -31,7 +31,14 @@ exports.config = {
   },
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
-  framework: 'jasmine',
+  framework: 'custom',
+  frameworkPath: require.resolve('protractor-cucumber-framework'),
+  cucumberOpts: {
+    require: [ './src/features/**/*.e2e-spec.ts' ],
+    strict: true,
+    format: 'json:TestResults/result/cucumber_report.json',
+    'dry-run': false
+},
   jasmineNodeOpts: {
     showColors: true,
     defaultTimeoutInterval: 30000,

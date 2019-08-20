@@ -4,8 +4,8 @@ services:
   sistema-tjmt-jus-br:
     image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${BRANCH:-develop}.${VERSION:-latest}
     ports:
-      80:80
-      443:443
+      - 80:80
+      - 443:443
     labels:
       kompose.service.expose: sistema-${BRANCH:-develop}-qa.tjmt.jus.br
 
