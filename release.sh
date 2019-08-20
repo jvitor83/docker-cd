@@ -1,6 +1,8 @@
 #!/bin/bash
-[[ -f docker-compose.${ENVIRONMENT}.yml ]] && echo "Publicando usando o arquivo 'docker-compose.${ENVIRONMENT}.yml'" && ./kompose convert -f docker-compose.${ENVIRONMENT}.yml
+
 echo "BRANCH: '${BRANCH}'"
+echo "ENVIRONMENT: '${ENVIRONMENT}'"
+[[ -f docker-compose${ENVIRONMENT}.yml ]] && echo "Publicando usando o arquivo 'docker-compose${ENVIRONMENT}.yml'" && ./kompose convert -f docker-compose${ENVIRONMENT}.yml
 rm -rf *.yml .*.json *.json
 # echo 'kubectl'
 # cat /bitnami/kubeconfig

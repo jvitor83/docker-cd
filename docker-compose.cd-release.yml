@@ -5,7 +5,9 @@ services:
     build:
       target: release
     environment:
-      BRANCH: ${BRANCH}
+      DOCKER_REGISTRY: ${DOCKER_REGISTRY}
+      VERSION: ${VERSION:-latest}
+      BRANCH: ${BRANCH:-develop}
       ENVIRONMENT: ${ENVIRONMENT:-override}
     volumes:
       - ./kubeconfig:/bitnami/kubeconfig

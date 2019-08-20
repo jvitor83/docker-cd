@@ -44,6 +44,7 @@ RUN npm run build -- --aot=true --build-optimizer=true --optimization=true --pro
 
 FROM nginx:1.17 as final
 COPY --from=publish /app/dist/ /usr/share/nginx/html/
+COPY --from=publish /pkg /usr/share/pkg
 EXPOSE 80 443
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
 

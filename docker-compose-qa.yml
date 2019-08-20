@@ -1,0 +1,12 @@
+version: '3.5'
+
+services:
+  sistema-tjmt-jus-br:
+    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${BRANCH:-develop}.${VERSION:-latest}
+    labels:
+      kompose.service.expose: sistema-${BRANCH:-develop}-qa.tjmt.jus.br
+    container_name: sistema-${BRANCH:-develop}-qa.tjmt.jus.br
+
+networks:
+  default:
+    name: ns-sistema-${BRANCH:-develop}-qa
