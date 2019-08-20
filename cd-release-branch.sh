@@ -4,8 +4,8 @@ docker system prune -f
 
 ## BUILD
 export DOCKER_REGISTRY=nexusdocker.tjmt.jus.br/dsa/teste/
-export VERSION=20190819.4
-export BRANCH=release-456
+export VERSION=20190819.5
+export BRANCH=release-4567
 
 echo "-------------------------------------------"
 echo "Restauro pacotes e Rodo os testes"
@@ -34,9 +34,9 @@ echo "-------------------------------------------"
 echo "Deve ter cache a partir daqui"
 
 export DOCKER_REGISTRY=nexusdocker.tjmt.jus.br/dsa/teste/
-export VERSION=20190819.4
-export BRANCH=-release-456
-export ENVIRONMENT=-dev
+export VERSION=20190819.5
+export BRANCH=release-4567
+export ENVIRONMENT=dev
 
 # docker-compose -f "docker-compose.yml" -f "docker-compose.cd-final.yml" build
 # docker-compose -f "docker-compose.yml" -f "docker-compose.cd-final.yml" push
@@ -44,8 +44,8 @@ echo "Publico a imagem final em dev"
 docker-compose -f "docker-compose.yml" -f "docker-compose.cd-release.yml" up --build --abort-on-container-exit
 
 
-export BRANCH=-release-456
-export ENVIRONMENT=-qa
+export BRANCH=release-4567
+export ENVIRONMENT=qa
 
 # docker-compose -f "docker-compose.yml" -f "docker-compose.cd-final.yml" build
 # docker-compose -f "docker-compose.yml" -f "docker-compose.cd-final.yml" push
@@ -53,8 +53,8 @@ echo "Publico a imagem final em qa"
 docker-compose -f "docker-compose.yml" -f "docker-compose.cd-release.yml" up --build --abort-on-container-exit
 
 
-export BRANCH=-release-456
-export ENVIRONMENT=-stage
+export BRANCH=release-4567
+export ENVIRONMENT=stage
 
 # docker-compose -f "docker-compose.yml" -f "docker-compose.cd-final.yml" build
 # docker-compose -f "docker-compose.yml" -f "docker-compose.cd-final.yml" push
@@ -62,8 +62,8 @@ echo "Publico a imagem final em qa"
 docker-compose -f "docker-compose.yml" -f "docker-compose.cd-release.yml" up --build --abort-on-container-exit
 
 
-export BRANCH=-release-456
-export ENVIRONMENT=-prod
+export BRANCH=release-4567
+export ENVIRONMENT=prod
 
 # docker-compose -f "docker-compose.yml" -f "docker-compose.cd-final.yml" build
 # docker-compose -f "docker-compose.yml" -f "docker-compose.cd-final.yml" push
