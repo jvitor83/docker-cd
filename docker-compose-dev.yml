@@ -6,6 +6,8 @@ services:
     environment:
       RUN_TEST: ${RUN_TEST:-false}
       RUN_PROJECT: ${RUN_PROJECT:-true}
+    ports:
+      80:4200
     labels:
       kompose.service.expose: sistema-${BRANCH:-develop}-dev.tjmt.jus.br
 
@@ -15,7 +17,7 @@ services:
     volumes:
       - ./data/db.json:/usr/data/db.json
     ports:
-      - 9090:9090
+      - 80:9090
     labels:
       kompose.service.expose: sistema-api-${BRANCH:-develop}-dev.tjmt.jus.br
 
