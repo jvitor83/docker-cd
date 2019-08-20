@@ -13,9 +13,9 @@ docker-compose -f "docker-compose.yml" -f "docker-compose.cd-build.yml" up --bui
 docker-compose -f "docker-compose.yml" -f "docker-compose.cd-build.yml" push
 
 
-docker create --name Container-TestResult -v sistema-test-results:/TestResult busybox
-docker cp Container-TestResult:/TestResult ./TestResult
-docker rm Container-TestResult
+docker create --name Container-TestResults -v sistema-test-results:/TestResults busybox
+docker cp Container-TestResults:/TestResults ./TestResults
+docker rm Container-TestResults
 # echo ""
 # echo "-------------------------------------------"
 # echo "Compilo o projeto e crio o pacote"
@@ -62,7 +62,7 @@ export ENVIRONMENT=stage
 
 # docker-compose -f "docker-compose.yml" -f "docker-compose.cd-final.yml" build
 # docker-compose -f "docker-compose.yml" -f "docker-compose.cd-final.yml" push
-echo "Publico a imagem final em qa"
+echo "Publico a imagem final em stage"
 docker-compose -f "docker-compose.cd-release.yml" up --build --abort-on-container-exit
 
 
@@ -71,6 +71,6 @@ export ENVIRONMENT=prod
 
 # docker-compose -f "docker-compose.yml" -f "docker-compose.cd-final.yml" build
 # docker-compose -f "docker-compose.yml" -f "docker-compose.cd-final.yml" push
-echo "Publico a imagem final em qa"
+echo "Publico a imagem final em prod"
 docker-compose -f "docker-compose.cd-release.yml" up --build --abort-on-container-exit
 

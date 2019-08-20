@@ -2,10 +2,10 @@
 // Protractor configuration file, see link for more information
 // https://github.com/angular/protractor/blob/master/lib/config.ts
 
-const process = require('process');
-process.env.CHROME_BIN = require('puppeteer').executablePath();
+// const process = require('process');
+// process.env.CHROME_BIN = require('puppeteer').executablePath();
 
-const { SpecReporter } = require('jasmine-spec-reporter');
+const cucumberXmlReport = require('cucumber-junit');
 
 /**
  * @type { import("protractor").Config }
@@ -38,16 +38,20 @@ exports.config = {
     strict: true,
     format: 'json:TestResults/result/cucumber_report.json',
     'dry-run': false
-},
-  jasmineNodeOpts: {
-    showColors: true,
-    defaultTimeoutInterval: 30000,
-    print: function() {}
   },
   onPrepare() {
     require('ts-node').register({
-      project: require('path').join(__dirname, './tsconfig.json')
+        project: require('path').join(__dirname, './tsconfig.json')
     });
-    jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
+    const dirName = process.cwd() + '/TestResults/result';
+    if (!require('fs').existsSync(dirName)) {
+        require('mkdirp').sync(dirName);
+    }
+  },
+  onComplete: () => {
+    const fs = require('fs');
+    const fileContent = fs.readFileSync('TestResults/result/cucumber_report.json', 'utf8');
+    const junitReportContent = cucumberXmlReport(fileContent, {strict: true});
+    fs.writeFileSync('TestResults/result/cucumber_report.xml', junitReportContent);
   }
 };

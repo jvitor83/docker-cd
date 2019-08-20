@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+    <testsuite name="home;a-first-scenario" tests="3" failures="1" skipped="0">
+        <properties>
+            <property name="URI" value="e2e\src\features\example.feature">
+            </property>
+        </properties>
+        <testcase name="Given I am on the software" classname="home;a-first-scenario" time="0.001">
+        </testcase>
+        <testcase name="When i go to the home page" classname="home;a-first-scenario" time="0.803">
+        </testcase>
+        <testcase name="Then should have a title saying Home" classname="home;a-first-scenario" time="0.055">
+            <failure message="NoSuchElementError: No element found using locator: By(css selector, app-page-home)">NoSuchElementError: No element found using locator: By(css selector, app-page-home)
+    at elementArrayFinder.getWebElements.then (D:\WORK\code\docker\docker-cd\node_modules\protractor\built\element.js:814:27)
+    at ManagedPromise.invokeCallback_ (D:\WORK\code\docker\docker-cd\node_modules\selenium-webdriver\lib\promise.js:1376:14)
+    at TaskQueue.execute_ (D:\WORK\code\docker\docker-cd\node_modules\selenium-webdriver\lib\promise.js:3084:14)
+    at TaskQueue.executeNext_ (D:\WORK\code\docker\docker-cd\node_modules\selenium-webdriver\lib\promise.js:3067:27)
+    at asyncRun (D:\WORK\code\docker\docker-cd\node_modules\selenium-webdriver\lib\promise.js:2927:27)
+    at D:\WORK\code\docker\docker-cd\node_modules\selenium-webdriver\lib\promise.js:668:7
+    at process._tickCallback (internal/process/next_tick.js:68:7)Error: 
+    at ElementArrayFinder.applyAction_ (D:\WORK\code\docker\docker-cd\node_modules\protractor\built\element.js:459:27)
+    at ElementArrayFinder.(anonymous function).args [as getText] (D:\WORK\code\docker\docker-cd\node_modules\protractor\built\element.js:91:29)
+    at ElementFinder.(anonymous function).args [as getText] (D:\WORK\code\docker\docker-cd\node_modules\protractor\built\element.js:831:22)
+    at AppPage.getPageOneTitleText (D:\WORK\code\docker\docker-cd\e2e\src\pages\app.po.ts:13:82)
+    at World.&lt;anonymous&gt; (D:\WORK\code\docker\docker-cd\e2e\src\features\example\example.e2e-spec.ts:20:17)</failure>
+        </testcase>
+    </testsuite>
+</testsuites>
