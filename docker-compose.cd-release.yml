@@ -2,13 +2,16 @@ version: '3.5'
 
 services:
   sistema-tjmt-jus-br:
-    build:
-      context: .
-      target: release
+    image: nexusdocker.tjmt.jus.br/dsa/publisher:latest
     environment:
       DOCKER_REGISTRY: ${DOCKER_REGISTRY}
       VERSION: ${VERSION:-latest}
       BRANCH: ${BRANCH:-develop}
       ENVIRONMENT: ${ENVIRONMENT:-override}
+      NPM_SUFFIX: ${NPM_SUFFIX:-local}
+      NPM_USER_NAME: ${NPM_USER_NAME:-admin}
+      NPM_PASSWORD: ${NPM_PASSWORD:-admin}
+      NPM_REGISTRY: ${NPM_SOURCE:-http://npm.tjmt.jus.br/repository/npm-hosted/}
     volumes:
-      - ./kubeconfig:/bitnami/kubeconfig
+      - .:/var/run/kubernetes
+      - ./docker-cd-0.0.0.tgz:/var/run/packages
