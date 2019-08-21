@@ -1,5 +1,7 @@
 # RELEASE Branch
-
+clear
+rm -rf ./docker-extract/
+mkdir -p ./docker-extract/app
 # docker system prune -f
 
 ## BUILD
@@ -29,11 +31,12 @@ echo "-------------------------------------------"
 echo "Compilo o projeto e crio o pacote"
 docker-compose -f "docker-compose.yml" -f "docker-compose.cd-publish.yml" up --build --abort-on-container-exit
 
-echo "Extraindo o artefato app/dist e pacotes npm"
+echo "Extraindo o artefato app/dist e /app/package"
 export CONTAINER_NAME=Container-App
 export VOLUME_NAME=sistema-extract-app
 docker create --name $CONTAINER_NAME -v $VOLUME_NAME:/app busybox
-docker cp $CONTAINER_NAME:/app ./docker-extract
+docker cp $CONTAINER_NAME:/app/dist ./docker-extract/app
+docker cp $CONTAINER_NAME:/app/package ./docker-extract/app
 docker rm $CONTAINER_NAME
 
 echo "Down no compose de publish para remover os volumes"
@@ -50,6 +53,11 @@ echo "-------------------------------------------"
 
 
 ##-------------- RELEASE
+export NPM_USER=admin
+export NPM_PASS=pwd
+export NPM_EMAIL=email@email.com
+export NPM_SOURCE=http://npm.tjmt.jus.br/repository/npm-hosted
+
 export ENVIRONMENT=dev
 export NPM_SUFFIX=dev
 echo "---------Publico a imagem final em dev"

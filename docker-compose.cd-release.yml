@@ -8,10 +8,10 @@ services:
       VERSION: ${VERSION:-latest}
       BRANCH: ${BRANCH:-develop}
       ENVIRONMENT: ${ENVIRONMENT:-override}
-      NPM_SUFFIX: ${NPM_SUFFIX:-local}
-      NPM_USER_NAME: ${NPM_USER_NAME:-admin}
-      NPM_PASSWORD: ${NPM_PASSWORD:-admin}
-      NPM_EMAIL: ${NPM_EMAIL:-cerberus@tjmt.jus.br}
-      NPM_REGISTRY: ${NPM_SOURCE:-http://npm.tjmt.jus.br/repository/npm-hosted/}
+      NPM_SUFFIX: ${NPM_SUFFIX}
+      NPM_USER: ${NPM_USER}
+      NPM_PASS: ${NPM_PASS}
+      NPM_EMAIL: ${NPM_EMAIL}
+      NPM_REGISTRY: ${NPM_SOURCE}      
     volumes:      
-      - ./docker-extract/app/packages:/var/run/packages      
+      - ./docker-extract/app/package:/var/run/packages  

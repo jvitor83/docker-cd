@@ -1,6 +1,6 @@
 {
-  "name": "docker-cd",
-  "version": "0.0.0",
+  "name": "@pjmt/docker-cd",
+  "version": "0.0.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,7 +9,10 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "private": true,
+  "publishConfig": {
+    "registry": "http://npm.tjmt.jus.br/repository/npm-hosted/"
+  },
+  "private": false,
   "dependencies": {
     "@angular/animations": "~8.2.0",
     "@angular/common": "~8.2.0",
