@@ -12,7 +12,7 @@ export BRANCH=release-123
 echo "-------------------------------------------"
 echo "Restauro pacotes e Rodo os testes"
 docker-compose -f "docker-compose.yml" -f "docker-compose.cd-build.yml" up --build --abort-on-container-exit
-#docker-compose -f "docker-compose.yml" -f "docker-compose.cd-build.yml" push
+docker-compose -f "docker-compose.yml" -f "docker-compose.cd-build.yml" push
 
 echo "Extraindo os resultados dos testes"
 export CONTAINER_NAME=Container-TestResults
@@ -48,7 +48,7 @@ echo ""
 echo "-------------------------------------------"
 echo "Crio a imagem final"
 docker-compose -f "docker-compose.yml" -f "docker-compose.cd-final.yml" build
-#docker-compose -f "docker-compose.yml" -f "docker-compose.cd-final.yml" push
+docker-compose -f "docker-compose.yml" -f "docker-compose.cd-final.yml" push
 echo "-------------------------------------------"
 
 
@@ -56,28 +56,33 @@ echo "-------------------------------------------"
 export NPM_USER=admin
 export NPM_PASS=pwd
 export NPM_EMAIL=email@email.com
-export NPM_SOURCE=http://npm.tjmt.jus.br/repository/npm-hosted
+export NPM_SOURCE=""
+#http://npm.tjmt.jus.br/repository/npm-hosted
 
 export ENVIRONMENT=dev
 export NPM_SUFFIX=dev
 echo "---------Publico a imagem final em dev"
 docker-compose -f "docker-compose.cd-release.yml" up --build --abort-on-container-exit
-
+docker-compose -f "docker-compose.cd-release.yml" down -v
+rm -rf *.yaml
 
 echo "---------Publico a imagem final em qa"
 export ENVIRONMENT=qa
 export NPM_SUFFIX=qa
 docker-compose -f "docker-compose.cd-release.yml" up --build --abort-on-container-exit
 docker-compose -f "docker-compose.cd-release.yml" down -v
+rm -rf *.yaml
 
 echo "---------Publico a imagem final em stage"
 export ENVIRONMENT=stage
 export NPM_SUFFIX=stage
 docker-compose -f "docker-compose.cd-release.yml" up --build --abort-on-container-exit
 docker-compose -f "docker-compose.cd-release.yml" down -v
+rm -rf *.yaml
 
 echo "---------Publico a imagem final em prod"
 export ENVIRONMENT=prod
 export NPM_SUFFIX=""
 docker-compose -f "docker-compose.cd-release.yml" up --build --abort-on-container-exit
 docker-compose -f "docker-compose.cd-release.yml" down -v
+rm -rf *.yaml

@@ -14,4 +14,5 @@ services:
       NPM_EMAIL: ${NPM_EMAIL}
       NPM_REGISTRY: ${NPM_SOURCE}      
     volumes:      
-      - ./docker-extract/app/package:/var/run/packages  
+      - ./docker-extract/app/package:/var/run/packages
+      - .:/var/run/kubernetes
