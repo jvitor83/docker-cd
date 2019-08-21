@@ -13,6 +13,5 @@ services:
       NPM_PASSWORD: ${NPM_PASSWORD:-admin}
       NPM_EMAIL: ${NPM_EMAIL:-cerberus@tjmt.jus.br}
       NPM_REGISTRY: ${NPM_SOURCE:-http://npm.tjmt.jus.br/repository/npm-hosted/}
-    volumes:
-      - .:/var/run/kubernetes
-      - ./docker-cd-0.0.0.tgz:/var/run/packages
+    volumes:      
+      - ./docker-extract/app/packages:/var/run/packages      

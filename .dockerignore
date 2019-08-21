@@ -1,4 +1,7 @@
 .git
+README.md
 node_modules
 Dockerfile
-#docker-compose*.yml
+docker-extract
+cd-feature-branch.sh
+cd-release-branch.sh

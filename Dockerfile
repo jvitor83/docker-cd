@@ -23,7 +23,7 @@ rm ${PATH_NATIVE_SONAR_SCANNER}/${SONAR_SCANNER_FILE_NAME}
 
 
 FROM base as build
-WORKDIR /app/
+WORKDIR /app
 COPY package.json package-lock.json .npmrc ./
 RUN npm ci
 COPY . ./
@@ -31,8 +31,11 @@ EXPOSE 4200
 ENTRYPOINT ["./entrypoint.sh"]
 
 FROM build as publish
+WORKDIR /app
 RUN npm run build -- --aot=true --build-optimizer=true --optimization=true --prod
 RUN npm pack
+RUN mkdir -p /app/package && mv *.tgz /app/package
+
 
 FROM nginx:1.17 as final
 COPY --from=publish /app/dist/ /usr/share/nginx/html/
