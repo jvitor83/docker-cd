@@ -54,10 +54,11 @@ echo "-------------------------------------------"
 
 ##-------------- RELEASE
 export NPM_USER=admin
-export NPM_PASS=pwd
+export NPM_PASS=a94n1kf7
 export NPM_EMAIL=email@email.com
-export NPM_REGISTRY=""
-#http://npm.tjmt.jus.br/repository/npm-hosted
+export NPM_REGISTRY="http://npm.tjmt.jus.br/repository/npm-hosted"
+export PACKAGES_FOLDER="./docker-extract/app/package"
+export KUBERNETES_FOLDER="."
 
 export ENVIRONMENT=dev
 export NPM_SUFFIX=dev

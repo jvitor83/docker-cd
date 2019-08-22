@@ -21,8 +21,13 @@ module.exports = function (config) {
     },
     coverageIstanbulReporter: {
       dir: require('path').join(__dirname, './TestResults/codecoverage'),
-      reports: ['html', 'lcovonly', 'cobertura', 'text-summary'],
-      fixWebpackSourcePaths: true
+      reports: ['html', 'lcov', 'cobertura'],
+      fixWebpackSourcePaths: true,
+      'report-config': {
+        html: {
+          subdir: 'Report'
+        }
+      },
     },
     customLaunchers: {
       ChromeHeadlessNoSandbox:  {
@@ -51,7 +56,7 @@ module.exports = function (config) {
       },
     reporters: ['progress', 'kjhtml', 'junit'],
     junitReporter: {
-      outputDir: './TestResults/result/junit' // results will be saved as $outputDir/$browserName.xml
+      outputDir: './TestResults/result' // results will be saved as $outputDir/$browserName.xml
     },
     failOnEmptyTestSuite: false,
     port: 9876,

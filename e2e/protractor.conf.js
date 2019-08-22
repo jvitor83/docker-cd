@@ -36,22 +36,22 @@ exports.config = {
   cucumberOpts: {
     require: [ './src/features/**/*.e2e-spec.ts' ],
     strict: true,
-    format: 'json:TestResults/result/cucumber_report.json',
+    format: 'json:TestResults/result/cucumber/report.json',
     'dry-run': false
   },
   onPrepare() {
     require('ts-node').register({
         project: require('path').join(__dirname, './tsconfig.json')
     });
-    const dirName = process.cwd() + '/TestResults/result';
+    const dirName = process.cwd() + '/TestResults/result/cucumber';
     if (!require('fs').existsSync(dirName)) {
         require('mkdirp').sync(dirName);
     }
   },
   onComplete: () => {
     const fs = require('fs');
-    const fileContent = fs.readFileSync('TestResults/result/cucumber_report.json', 'utf8');
+    const fileContent = fs.readFileSync('TestResults/result/cucumber/report.json', 'utf8');
     const junitReportContent = cucumberXmlReport(fileContent, {strict: true});
-    fs.writeFileSync('TestResults/result/cucumber_report.xml', junitReportContent);
+    fs.writeFileSync('TestResults/result/cucumber/report.xml', junitReportContent);
   }
 };
