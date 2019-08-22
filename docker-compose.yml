@@ -16,7 +16,9 @@ services:
       RUN_PROJECT: ${RUN_PROJECT:-false}
       RUN_SONARQUBE: ${RUN_SONARQUBE:-true}
       SONARQUBE_URL: ${SONARQUBE_URL:-http://172.17.0.1:9000}
-      SONARQUBE_LOGIN: ${SONARQUBE_LOGIN:-admin}
-      SONARQUBE_PASSWORD: ${SONARQUBE_PASSWORD:-admin}
+      SONARQUBE_LOGIN: ${SONARQUBE_LOGIN}
+      SONARQUBE_PASSWORD: ${SONARQUBE_PASSWORD}
       SONARQUBE_PROJECT: sistema.tjmt.jus.br
       SONARQUBE_PROJECT_VERSION: ${VERSION:-latest}
+
+#SONARQUBE_PASSWORD não pode ter default. Se for autenticar com token vai ser passado a senha default, dando não autorizado.
