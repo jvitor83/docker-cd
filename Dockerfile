@@ -1,4 +1,4 @@
-FROM node:10 as build
+FROM node:10 as base
 
 RUN wget --no-check-certificate -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
     && sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
@@ -21,6 +21,7 @@ RUN curl -sOSL -k --no-buffer ${URL_SONAR_SCANNER} && \
 unzip ${PATH_NATIVE_SONAR_SCANNER}/${SONAR_SCANNER_FILE_NAME} && \
 rm ${PATH_NATIVE_SONAR_SCANNER}/${SONAR_SCANNER_FILE_NAME}
 
+FROM base as build
 WORKDIR /app
 COPY package.json package-lock.json .npmrc ./
 RUN npm ci
