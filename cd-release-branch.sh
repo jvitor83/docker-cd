@@ -6,8 +6,8 @@ mkdir -p ./docker-extract/app
 
 ## BUILD
 export DOCKER_REGISTRY=nexusdocker.tjmt.jus.br/dsa/teste/
-export VERSION=20190819.7
-export BRANCH=release-123
+export VERSION=20190822.1
+export BRANCH=release-1
 export SONARQUBE_URL="http://sonarqube.tjmt.jus.br"
 export SONARQUBE_LOGIN="c29b8801c173a4d9605a5eba61a069272b80dc7c"
 
