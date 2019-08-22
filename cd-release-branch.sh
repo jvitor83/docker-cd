@@ -6,7 +6,7 @@ mkdir -p ./docker-extract/app
 
 ## BUILD
 export DOCKER_REGISTRY=nexusdocker.tjmt.jus.br/dsa/teste/
-export VERSION=20190819.6
+export VERSION=20190819.7
 export BRANCH=release-123
 
 echo "-------------------------------------------"
@@ -56,7 +56,7 @@ echo "-------------------------------------------"
 export NPM_USER=admin
 export NPM_PASS=pwd
 export NPM_EMAIL=email@email.com
-export NPM_SOURCE=""
+export NPM_REGISTRY=""
 #http://npm.tjmt.jus.br/repository/npm-hosted
 
 export ENVIRONMENT=dev

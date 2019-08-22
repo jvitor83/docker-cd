@@ -12,7 +12,7 @@ services:
       NPM_USER: ${NPM_USER}
       NPM_PASS: ${NPM_PASS}
       NPM_EMAIL: ${NPM_EMAIL}
-      NPM_REGISTRY: ${NPM_SOURCE}      
+      NPM_REGISTRY: ${NPM_REGISTRY}      
     volumes:      
       - ./docker-extract/app/package:/var/run/packages
       - .:/var/run/kubernetes
