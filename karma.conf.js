@@ -14,6 +14,7 @@ module.exports = function (config) {
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
       require('karma-junit-reporter'),
+      require('karma-sonarqube-unit-reporter'),      
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
@@ -54,9 +55,17 @@ module.exports = function (config) {
               ],
             }
       },
-    reporters: ['progress', 'kjhtml', 'junit'],
+    reporters: ['progress', "sonarqubeUnit", 'kjhtml', 'junit'],
     junitReporter: {
-      outputDir: './TestResults/result' // results will be saved as $outputDir/$browserName.xml
+      outputDir: './TestResults/result/junit' // results will be saved as $outputDir/$browserName.xml
+    },
+    sonarQubeUnitReporter: {
+      sonarQubeVersion: 'LATEST',
+      outputFile: './TestResults/result/sonarqube/ut_report.xml',
+      useBrowserName: false,      
+      overrideTestDescription: true,
+      testPaths: ['.'],
+      testFilePattern: '.spec.ts'     
     },
     failOnEmptyTestSuite: false,
     port: 9876,
