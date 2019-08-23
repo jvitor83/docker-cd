@@ -11,17 +11,21 @@ export BRANCH=release-1
 export SONARQUBE_URL="http://sonarqube.tjmt.jus.br"
 export SONARQUBE_LOGIN="c29b8801c173a4d9605a5eba61a069272b80dc7c"
 
+export ARTIFACT_STAGING_DIRECTORY="./docker-extract"
+
 echo "-------------------------------------------"
 echo "Restauro pacotes e Rodo os testes"
+export DOCKERCOMPOSE_BUILD_VOLUME_NAME="sistema-extract-testresults"
+export DOCKERCOMPOSE_BUILD_CONTAINER_NAME="container-testResults"
+export DOCKERCOMPOSE_BUILD_TEST_RESULT_PATH="/TestResults"
+
 docker-compose -f "docker-compose.yml" -f "docker-compose.cd-build.yml" up --build --abort-on-container-exit
 docker-compose -f "docker-compose.yml" -f "docker-compose.cd-build.yml" push
 
 echo "Extraindo os resultados dos testes"
-export CONTAINER_NAME=Container-TestResults
-export VOLUME_NAME=sistema-test-results
-docker create --name $CONTAINER_NAME -v $VOLUME_NAME:/TestResults busybox
-docker cp $CONTAINER_NAME:/TestResults ./docker-extract
-docker rm $CONTAINER_NAME
+docker create --name $DOCKERCOMPOSE_BUILD_CONTAINER_NAME -v $DOCKERCOMPOSE_BUILD_VOLUME_NAME:$DOCKERCOMPOSE_BUILD_TEST_RESULT_PATH busybox
+docker cp $DOCKERCOMPOSE_BUILD_CONTAINER_NAME:$DOCKERCOMPOSE_BUILD_TEST_RESULT_PATH $ARTIFACT_STAGING_DIRECTORY
+docker rm $DOCKERCOMPOSE_BUILD_CONTAINER_NAME
 
 echo "Down no compose de build para remover os volumes"
 docker-compose -f "docker-compose.yml" -f "docker-compose.cd-build.yml" down -v
@@ -31,15 +35,17 @@ echo "-------------------------------------------"
 echo ""
 echo "-------------------------------------------"
 echo "Compilo o projeto e crio o pacote"
+export DOCKERCOMPOSE_PUBLISH_VOLUME_NAME="sistema-extract-publish"
+export DOCKERCOMPOSE_PUBLISH_CONTAINER_NAME="container-publish"
+export DOCKERCOMPOSE_PUBLISH_APP_PATH="/app"
+
+
 docker-compose -f "docker-compose.yml" -f "docker-compose.cd-publish.yml" up --build --abort-on-container-exit
 
 echo "Extraindo o artefato app/dist e /app/package"
-export CONTAINER_NAME=Container-App
-export VOLUME_NAME=sistema-extract-app
-docker create --name $CONTAINER_NAME -v $VOLUME_NAME:/app busybox
-docker cp $CONTAINER_NAME:/app/dist ./docker-extract/app
-docker cp $CONTAINER_NAME:/app/package ./docker-extract/app
-docker rm $CONTAINER_NAME
+docker create --name $DOCKERCOMPOSE_PUBLISH_CONTAINER_NAME -v $DOCKERCOMPOSE_PUBLISH_VOLUME_NAME:$DOCKERCOMPOSE_PUBLISH_APP_PATH busybox
+docker cp $DOCKERCOMPOSE_PUBLISH_CONTAINER_NAME:$DOCKERCOMPOSE_PUBLISH_APP_PATH $ARTIFACT_STAGING_DIRECTORY
+docker rm $DOCKERCOMPOSE_PUBLISH_CONTAINER_NAME
 
 echo "Down no compose de publish para remover os volumes"
 docker-compose -f "docker-compose.yml" -f "docker-compose.cd-publish.yml" down -v

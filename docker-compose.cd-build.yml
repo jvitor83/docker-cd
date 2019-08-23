@@ -29,4 +29,4 @@ networks:
 
 volumes:
   test-result:
-    name: ${DOCKERCOMPOSE_CI_VOLUME_NAME:-sistema-test-results}
+    name: ${DOCKERCOMPOSE_BUILD_VOLUME_NAME:-sistema-test-results}

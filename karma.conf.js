@@ -27,6 +27,9 @@ module.exports = function (config) {
       'report-config': {
         html: {
           subdir: 'Report'
+        },
+        cobertura:{
+          file: 'coverage.cobertura.xml'
         }
       },
     },
