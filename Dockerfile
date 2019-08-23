@@ -27,6 +27,7 @@ COPY package.json package-lock.json .npmrc ./
 RUN npm ci
 COPY . ./
 EXPOSE 4200
+RUN chmod +x ./entrypoint.sh
 ENTRYPOINT ["./entrypoint.sh"]
 
 FROM build as publish
