@@ -11,4 +11,4 @@ services:
 
 volumes:
   app:
-    name: ${DOCKERCOMPOSE_APP_VOLUME_NAME:-sistema-extract-app}
+    name: ${DOCKERCOMPOSE_PUBLISH_VOLUME_NAME:-sistema-extract-app}
