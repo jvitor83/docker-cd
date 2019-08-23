@@ -2,15 +2,15 @@ version: '3.5'
 
 services:
   sistema-tjmt-jus-br:
+    container_name: sistema-${BRANCH:-develop}-ci.tjmt.jus.br
     image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${BRANCH:-develop}.${VERSION:-latest}-build
     build:
       target: build
     environment:
       RUN_TEST: ${RUN_TEST:-true}
       RUN_PROJECT: ${RUN_PROJECT:-false}
-    depends_on:
-      - sistema-api-tjmt-jus-br
-    container_name: sistema-${BRANCH:-develop}-ci.tjmt.jus.br
+    # depends_on:
+    #   - sistema-api-tjmt-jus-br
     volumes:
       - test-result:/app/TestResults
 
