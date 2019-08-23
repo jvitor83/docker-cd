@@ -18,7 +18,7 @@ services:
     image: suhailtaj/mock-api:${SISTEMA_API_VERSION:-latest}
     command: /usr/data/db.json
     volumes:
-      - ./data/db.json:/usr/data/db.json
+      -  ${PWD}/data/db.json:/usr/data/db.json
     ports:
       - 9090:9090
     container_name: sistema-api-${BRANCH:-develop}-ci.tjmt.jus.br
