@@ -5,12 +5,12 @@ echo "Iniciando entrypoint"
 if [[ ${RUN_TEST} = "true" ]]; then
     echo "-------------------------------------------------------"
     echo "npm test"
-    npm test -- --watch=false --browsers=ChromeHeadlessNoSandbox --code-coverage || true;
+    npm test -- --watch=false --browsers=ChromeHeadlessNoSandbox --code-coverage || true
     echo "-------------------------------------------------------"
 
     echo "-------------------------------------------------------"
     echo "npm run e2e"
-    npm run e2e || true;
+    npm run e2e || true
     echo "-------------------------------------------------------"
 
     #https://docs.sonarqube.org/7.7/analysis/coverage/
@@ -25,7 +25,7 @@ if [[ ${RUN_TEST} = "true" ]]; then
         echo "SONARQUBE_URL $SONARQUBE_URL"        
         echo "-------------------------------------------------------"
 
-        sonar-scanner -Dsonar.projectKey="$SONARQUBE_PROJECT" -Dsonar.projectVersion="$SONARQUBE_PROJECT_VERSION" -Dsonar.projectName="$SONARQUBE_PROJECT" -Dsonar.host.url="$SONARQUBE_URL" -Dsonar.login=$SONARQUBE_LOGIN -Dsonar.password=$SONARQUBE_PASSWORD || true;
+        sonar-scanner -Dsonar.projectKey="$SONARQUBE_PROJECT" -Dsonar.projectVersion="$SONARQUBE_PROJECT_VERSION" -Dsonar.projectName="$SONARQUBE_PROJECT" -Dsonar.host.url="$SONARQUBE_URL" -Dsonar.login=$SONARQUBE_LOGIN -Dsonar.password=$SONARQUBE_PASSWORD || true
     fi
 fi
 
