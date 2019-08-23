@@ -1,1 +1,8 @@
-a
+*.yml
+*.sh
+Dockerfile
+kubeconfig
+.dockerignore
+sonar-project.properties
+docker-extract
+data
