@@ -2,8 +2,8 @@ version: '3.5'
 
 services:
   sistema-tjmt-jus-br:
-    container_name: sistema-${BRANCH:-develop}-ci.tjmt.jus.br
     image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${BRANCH:-develop}.${VERSION:-latest}-build
+    container_name: sistema-${BRANCH:-develop}-ci.tjmt.jus.br
     build:
       target: build
     environment:
