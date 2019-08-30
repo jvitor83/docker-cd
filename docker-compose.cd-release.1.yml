@@ -14,5 +14,5 @@ services:
       NPM_EMAIL: cerberus@tjmt.jus.br
       NPM_REGISTRY: http://npm.tjmt.jus.br/repository/npm-hosted}
     volumes:
-      - /vsts/agent/_work/r8/a/BUILD/docker-cd-FRONT/package:/var/run/packages
-      - /vsts/agent/_work/r8/a/BUILD/source:/var/run/kubernetes
+      - ./docker-cd-FRONT/package:/var/run/packages
+      - ./source:/var/run/kubernetes
