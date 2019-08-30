@@ -14,5 +14,5 @@ services:
       NPM_EMAIL: ${NPM_EMAIL}
       NPM_REGISTRY: ${NPM_REGISTRY}      
     volumes:      
-      - ${PACKAGES_FOLDER}:/var/run/packages
+      - ${PACKAGES_FOLDER}:/var/run/packages/npm
       - ${KUBERNETES_FOLDER}:/var/run/kubernetes
