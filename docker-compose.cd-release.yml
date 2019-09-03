@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
   sistema-tjmt-jus-br:
-    image: nexusdocker.tjmt.jus.br/dsa/publisher:latest
+    ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${BRANCH:-develop}.${VERSION:-latest}-publish
     environment:
       DOCKER_REGISTRY: ${DOCKER_REGISTRY}
       VERSION: ${VERSION:-latest}
@@ -13,6 +13,3 @@ services:
       NPM_PASS: ${NPM_PASS}
       NPM_EMAIL: ${NPM_EMAIL}
       NPM_REGISTRY: ${NPM_REGISTRY}      
-    volumes:      
-      - ${PACKAGES_FOLDER}:/var/run/packages/npm
-      - ${KUBERNETES_FOLDER}:/var/run/kubernetes

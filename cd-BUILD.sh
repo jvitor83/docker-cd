@@ -1,16 +1,12 @@
-# RELEASE Branch
 clear
 rm -rf ./docker-extract/
 mkdir -p ./docker-extract/app
-# docker system prune -f
 
-## BUILD
 export DOCKER_REGISTRY=nexusdocker.tjmt.jus.br/dsa/teste/
 export VERSION=20190822.1
 export BRANCH=release-1
 export SONARQUBE_URL="http://sonarqube.tjmt.jus.br"
 export SONARQUBE_LOGIN="c29b8801c173a4d9605a5eba61a069272b80dc7c"
-
 export ARTIFACT_STAGING_DIRECTORY="./docker-extract"
 
 echo "-------------------------------------------"
@@ -62,40 +58,3 @@ echo "docker-compose down final"
 docker-compose -f "docker-compose.yml" -f "docker-compose.cd-final.yml" down -v --rmi all --remove-orphans
 echo "-------------------------------------------"
 
-
-##-------------- RELEASE
-export NPM_USER=admin
-export NPM_PASS=pwd
-export NPM_EMAIL=email@email.com
-export NPM_REGISTRY="http://npm.tjmt.jus.br/repository/npm-hosted"
-export PACKAGES_FOLDER="./docker-extract/app/package"
-export KUBERNETES_FOLDER="."
-
-
-export ENVIRONMENT=dev
-export NPM_SUFFIX=dev
-echo "---------Publico a imagem final em dev"
-docker-compose -f "docker-compose.cd-release.yml" up --build --abort-on-container-exit
-docker-compose -f "docker-compose.cd-release.yml" down -v
-rm -rf *.yaml
-
-echo "---------Publico a imagem final em qa"
-export ENVIRONMENT=qa
-export NPM_SUFFIX=qa
-docker-compose -f "docker-compose.cd-release.yml" up --build --abort-on-container-exit
-docker-compose -f "docker-compose.cd-release.yml" down -v
-rm -rf *.yaml
-
-echo "---------Publico a imagem final em stage"
-export ENVIRONMENT=stage
-export NPM_SUFFIX=stage
-docker-compose -f "docker-compose.cd-release.yml" up --build --abort-on-container-exit
-docker-compose -f "docker-compose.cd-release.yml" down -v
-rm -rf *.yaml
-
-echo "---------Publico a imagem final em prod"
-export ENVIRONMENT=prod
-export NPM_SUFFIX=""
-docker-compose -f "docker-compose.cd-release.yml" up --build --abort-on-container-exit
-docker-compose -f "docker-compose.cd-release.yml" down -v
-rm -rf *.yaml

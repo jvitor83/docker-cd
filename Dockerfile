@@ -36,6 +36,15 @@ RUN npm run build -- --aot=true --build-optimizer=true --optimization=true --pro
 RUN npm pack
 RUN mkdir -p /app/package && mv *.tgz /app/package
 
+FROM nexusdocker.tjmt.jus.br/dsa/publisher:latest as release
+#Source
+COPY . /var/run/kubernetes/
+
+#Runtime
+COPY --from=publish /app/dist/ /var/run/www
+
+#Packages
+COPY --from=publish /app/package /var/run/packages/npm
 
 FROM nginx:1.17 as final
 COPY --from=publish /app/dist/ /usr/share/nginx/html/
