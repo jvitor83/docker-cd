@@ -2,8 +2,9 @@
 ##-------------- RELEASE
 
 export DOCKER_REGISTRY=nexusdocker.tjmt.jus.br/dsa/teste/
-export VERSION=20190822.1
-export BRANCH=release-1
+export VERSION=20190903-1
+export BRANCH=us123
+
 
 export DEPLOY_NPM="true"
 export DEPLOY_KUBERNETES="true"

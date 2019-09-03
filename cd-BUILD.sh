@@ -3,8 +3,8 @@ rm -rf ./docker-extract/
 
 #Essas variaveis precisam estar na release também
 export DOCKER_REGISTRY=nexusdocker.tjmt.jus.br/dsa/teste/
-export VERSION=20190822.1
-export BRANCH=release-1
+export VERSION=20190903-1
+export BRANCH=us123
 
 export SONARQUBE_URL="http://sonarqube.tjmt.jus.br"
 export SONARQUBE_LOGIN="c29b8801c173a4d9605a5eba61a069272b80dc7c"
