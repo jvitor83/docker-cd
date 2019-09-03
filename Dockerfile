@@ -37,6 +37,11 @@ RUN npm pack
 RUN mkdir -p /app/package && mv *.tgz /app/package
 
 FROM nexusdocker.tjmt.jus.br/dsa/publicador:latest as release
+ARG VERSION=latest
+ARG BRANCH
+ENV VERSION=${VERSION}
+ENV BRANCH=${BRANCH}
+
 #Source/Kubernetes
 COPY . /var/release/source/
 

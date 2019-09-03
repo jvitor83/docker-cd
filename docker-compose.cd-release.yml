@@ -2,14 +2,7 @@ version: '3.5'
 
 services:
   sistema-tjmt-jus-br:
-    ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${BRANCH:-develop}.${VERSION:-latest}-publish
+    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${BRANCH:-develop}.${VERSION:-latest}-publish
     environment:
-      DOCKER_REGISTRY: ${DOCKER_REGISTRY}
-      VERSION: ${VERSION:-latest}
-      BRANCH: ${BRANCH:-develop}
       ENVIRONMENT: ${ENVIRONMENT:-override}
-      NPM_SUFFIX: ${NPM_SUFFIX}
-      NPM_USER: ${NPM_USER}
-      NPM_PASS: ${NPM_PASS}
-      NPM_EMAIL: ${NPM_EMAIL}
-      NPM_REGISTRY: ${NPM_REGISTRY}      
+      NPM_SUFFIX: ${NPM_SUFFIX}      
