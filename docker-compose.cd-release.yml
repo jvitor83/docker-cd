@@ -5,4 +5,6 @@ services:
     image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${BRANCH:-develop}.${VERSION:-latest}-publish
     environment:
       ENVIRONMENT: ${ENVIRONMENT:-override}
-      NPM_SUFFIX: ${NPM_SUFFIX}      
+      NPM_LIFE_CICLE_VERSION: ${NPM_LIFE_CICLE_VERSION}
+      DEPLOY_NPM: true
+      DEPLOY_KUBERNETES: true
