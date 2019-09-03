@@ -10,3 +10,7 @@ services:
       RUN_PROJECT: ${RUN_PROJECT:-false}      
 
 #SONARQUBE_PASSWORD não pode ter default. Se for autenticar com token vai ser passado a senha default, dando não autorizado.
+
+networks:
+  default:
+    name: ns-sistema-default
