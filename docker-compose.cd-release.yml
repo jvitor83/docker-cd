@@ -4,7 +4,7 @@ services:
   sistema-tjmt-jus-br:
     image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${BRANCH:-develop}.${VERSION:-latest}-publish
     environment:
-      ENVIRONMENT: ${ENVIRONMENT:-override}
+      ENVIRONMENT: ${ENVIRONMENT}
       NPM_LIFE_CICLE_VERSION: ${NPM_LIFE_CICLE_VERSION}
-      DEPLOY_NPM: true
-      DEPLOY_KUBERNETES: true
+      DEPLOY_NPM: ${DEPLOY_NPM:-true}
+      DEPLOY_KUBERNETES: ${DEPLOY_KUBERNETES:-true}
