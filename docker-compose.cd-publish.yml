@@ -7,7 +7,7 @@ services:
     build:
       target: release
     volumes:
-      - app:/var/run/
+      - app:/var/release/
 
 volumes:
   app:
