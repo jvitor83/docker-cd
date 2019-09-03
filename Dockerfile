@@ -36,8 +36,8 @@ RUN npm run build -- --aot=true --build-optimizer=true --optimization=true --pro
 RUN npm pack
 RUN mkdir -p /app/package && mv *.tgz /app/package
 
-FROM nexusdocker.tjmt.jus.br/dsa/publisher:latest as release
-#Source
+FROM nexusdocker.tjmt.jus.br/dsa/publicador:latest as release
+#Source/Kubernetes
 COPY . /var/release/source/
 
 #Runtime
