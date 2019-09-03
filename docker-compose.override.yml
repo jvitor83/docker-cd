@@ -5,6 +5,8 @@ services:
     image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}
     build:
       target: build
+    ports:
+      - 4200:4200      
     environment:
       RUN_TEST: ${RUN_TEST:-false}
       RUN_PROJECT: ${RUN_PROJECT:-true}
