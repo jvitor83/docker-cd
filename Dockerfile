@@ -38,13 +38,13 @@ RUN mkdir -p /app/package && mv *.tgz /app/package
 
 FROM nexusdocker.tjmt.jus.br/dsa/publisher:latest as release
 #Source
-COPY . /var/run/kubernetes/
+COPY . /var/release/source/
 
 #Runtime
-COPY --from=publish /app/dist/ /var/run/www
+COPY --from=publish /app/dist/ /var/release/www
 
 #Packages
-COPY --from=publish /app/package /var/run/packages/npm
+COPY --from=publish /app/package /var/release/packages/npm
 
 FROM nginx:1.17 as final
 COPY --from=publish /app/dist/ /usr/share/nginx/html/
