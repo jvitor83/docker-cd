@@ -4,6 +4,7 @@ services:
   sistema-tjmt-jus-br:
     image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${BRANCH:-develop}.${VERSION:-latest}-publish
     environment:
+      DOCKER_REGISTRY: ${DOCKER_REGISTRY}
       ENVIRONMENT: ${ENVIRONMENT}
       NPM_LIFE_CICLE_VERSION: ${NPM_LIFE_CICLE_VERSION}
       DEPLOY_NPM: ${DEPLOY_NPM:-true}
