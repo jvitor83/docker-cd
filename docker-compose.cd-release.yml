@@ -8,3 +8,4 @@ services:
       NPM_LIFE_CICLE_VERSION: ${NPM_LIFE_CICLE_VERSION}
       DEPLOY_NPM: ${DEPLOY_NPM:-true}
       DEPLOY_KUBERNETES: ${DEPLOY_KUBERNETES:-true}
+      KUBERNETES_FOLDER: /var/release/source/
