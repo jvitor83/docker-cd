@@ -7,8 +7,10 @@ COPY package.json package-lock.json .npmrc ./
 RUN npm ci
 COPY . ./
 EXPOSE 4200
-RUN chmod +x ./entrypoint.sh
-ENTRYPOINT ["./entrypoint.sh"]
+
+ENTRYPOINT ["/entrypoint/entrypoint.sh"]
+
+
 
 FROM build as publish
 WORKDIR /app
@@ -26,11 +28,11 @@ ENV VERSION=${VERSION}
 ENV BRANCH=${BRANCH}
 
 #Source/Kubernetes
-COPY . /var/release/source/
+COPY . ./source
 #Runtime
-COPY --from=publish /app/dist/ /var/release/www
+COPY --from=publish /app/dist/ ./www
 #Packages
-COPY --from=publish /app/package /var/release/packages/npm
+COPY --from=publish /app/package ./packages/npm
 
 
 

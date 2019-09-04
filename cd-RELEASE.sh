@@ -2,13 +2,12 @@
 ##-------------- RELEASE
 
 export DOCKER_REGISTRY=nexusdocker.tjmt.jus.br/dsa/teste/
-export VERSION=20190903-1
-export BRANCH=us123
+export VERSION=20190904-1
+export BRANCH=us666
 
-
-export DEPLOY_NPM="true"
+export DEPLOY_NPM="false"
 export DEPLOY_KUBERNETES="true"
-export ENVIRONMENT=dev1
+export ENVIRONMENT=dev
 export NPM_LIFE_CICLE_VERSION=dev
 
 echo "---------Publico a imagem final em dev"
