@@ -3,5 +3,5 @@ README.md
 node_modules
 Dockerfile
 docker-extract
-cd-feature-branch.sh
-cd-release-branch.sh
+cd-BUILD.sh
+cd-RELEASE.sh
