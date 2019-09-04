@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
   sistema-tjmt-jus-br:
-    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${BRANCH:-develop}.${VERSION:-latest}-build
+    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${BRANCH:-develop}.${VERSION:-local}-build
     container_name: sistema-${BRANCH:-develop}-ci.tjmt.jus.br
     build:
       target: build
@@ -13,7 +13,7 @@ services:
       SONARQUBE_URL: ${SONARQUBE_URL:-http://172.17.0.1:9000}
       SONARQUBE_LOGIN: ${SONARQUBE_LOGIN}
       SONARQUBE_PROJECT: sistema.tjmt.jus.br
-      SONARQUBE_PROJECT_VERSION: ${VERSION:-latest}
+      SONARQUBE_PROJECT_VERSION: ${VERSION:-local}
     # depends_on:
     #   - sistema-api-tjmt-jus-br
     volumes:
@@ -27,6 +27,10 @@ services:
   #   ports:
   #     - 9090:9090
   #   container_name: sistema-api-${BRANCH:-develop}-ci.tjmt.jus.br
+
+networks:
+  default:
+    name: ns-sistema-ci
 
 volumes:
   test-result:

@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
   sistema-tjmt-jus-br:
-    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${BRANCH:-develop}.${VERSION:-latest}-publish
+    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${BRANCH:-develop}.${VERSION:-local}-publish
     environment:
       DOCKER_REGISTRY: ${DOCKER_REGISTRY}
       ENVIRONMENT: ${ENVIRONMENT}

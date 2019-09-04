@@ -2,15 +2,9 @@ version: '3.5'
 
 services:
   sistema-tjmt-jus-br:
-    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${BRANCH:-develop}.${VERSION:-latest}
+    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${BRANCH:-develop}.${VERSION:-local}
     build:
       context: .
     environment:
       RUN_TEST: ${RUN_TEST:-false}
-      RUN_PROJECT: ${RUN_PROJECT:-false}      
-
-#SONARQUBE_PASSWORD não pode ter default. Se for autenticar com token vai ser passado a senha default, dando não autorizado.
-
-networks:
-  default:
-    name: ns-sistema-default
+      RUN_PROJECT: ${RUN_PROJECT:-false}

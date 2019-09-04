@@ -2,12 +2,12 @@ version: '3.5'
 
 services:
   sistema-tjmt-jus-br:
-    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${BRANCH:-develop}.${VERSION:-latest}-publish
-    container_name: sistema-${BRANCH:-develop}-publish.tjmt.jus.br     
+    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${BRANCH:-develop}.${VERSION:-local}-publish
+    container_name: sistema-${BRANCH:-develop}-publish.tjmt.jus.br
     build:
       target: release
       args:
-        VERSION: ${VERSION:-latest}
+        VERSION: ${VERSION:-local}
         BRANCH: ${BRANCH:-develop}
     volumes:
       - app:/var/release/

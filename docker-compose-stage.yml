@@ -2,10 +2,19 @@ version: '3.5'
 
 services:
   sistema-tjmt-jus-br:
-    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${BRANCH:-develop}.${VERSION:-latest}
+    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${BRANCH:-develop}.${VERSION:-local}
     ports:
       - 80:80
       - 443:443
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 512M
+        reservations:
+          cpus: '0.1'
+          memory: 128M         
     labels:
       kompose.service.expose: sistema-stage.tjmt.jus.br
 

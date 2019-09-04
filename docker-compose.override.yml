@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
   sistema-tjmt-jus-br:
-    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${VERSION:-latest}
+    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:local
     build:
       target: build
     ports:
@@ -22,7 +22,3 @@ services:
     ports:
       - 9090:9090
     container_name: sistema-api-local.tjmt.jus.br
-
-networks:
-  default:
-    name: ns-sistema-local
