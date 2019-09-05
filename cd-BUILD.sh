@@ -20,8 +20,8 @@ export DOCKERCOMPOSE_BUILD_VOLUME_NAME="sistema-extract-testresults"
 export DOCKERCOMPOSE_BUILD_CONTAINER_NAME="container-testResults"
 export DOCKERCOMPOSE_BUILD_TEST_RESULT_PATH="/TestResults"
 
-docker-compose -f "docker-compose.yml" -f "docker-compose.cd-build.yml" up --build --abort-on-container-exit
-#docker-compose -f "docker-compose.yml" -f "docker-compose.cd-build.yml" push
+docker-compose -f "docker-compose.yml" -f "docker-compose.cd-ci.yml" up --build --abort-on-container-exit
+#docker-compose -f "docker-compose.yml" -f "docker-compose.cd-ci.yml" push
 
 echo "Extraindo os resultados dos testes"
 docker create --name $DOCKERCOMPOSE_BUILD_CONTAINER_NAME -v $DOCKERCOMPOSE_BUILD_VOLUME_NAME:$DOCKERCOMPOSE_BUILD_TEST_RESULT_PATH busybox
@@ -57,7 +57,7 @@ echo "-------------------------------------------"
 # echo ""
 # echo "-------------------------------------------"
 # echo "docker-compose down build"
-# docker-compose -f "docker-compose.yml" -f "docker-compose.cd-build.yml" down -v --rmi all --remove-orphans
+# docker-compose -f "docker-compose.yml" -f "docker-compose.cd-ci.yml" down -v --rmi all --remove-orphans
 # echo "docker-compose down publish"
 # docker-compose -f "docker-compose.yml" -f "docker-compose.cd-publish.yml" down -v --rmi all --remove-orphans
 # echo "docker-compose down final"

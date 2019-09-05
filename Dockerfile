@@ -1,15 +1,17 @@
 FROM nexusdocker.tjmt.jus.br/dsa/node:10 as base
 
 
-FROM base as build
+FROM base as ci
 WORKDIR /app
 COPY package.json package-lock.json .npmrc ./
 RUN npm ci
 COPY . ./
 EXPOSE 4200
-
 ENTRYPOINT ["/entrypoint/entrypoint.sh"]
 
+
+FROM ci as build
+#Node não tem build. O build é no publish que gera os arquivos finais
 
 
 FROM build as publish
@@ -17,8 +19,6 @@ WORKDIR /app
 RUN npm run build -- --aot=true --build-optimizer=true --optimization=true --prod
 RUN npm pack
 RUN mkdir -p /app/package && mv *.tgz /app/package
-
-
 
 
 FROM nexusdocker.tjmt.jus.br/dsa/publicador:latest as release

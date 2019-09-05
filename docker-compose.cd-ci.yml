@@ -2,10 +2,10 @@ version: '3.5'
 
 services:
   sistema-tjmt-jus-br:
-    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${BRANCH:-develop}.${VERSION:-local}-build
+    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${BRANCH:-develop}.${VERSION:-local}-ci
     container_name: sistema-${BRANCH:-develop}-ci.tjmt.jus.br
     build:
-      target: build
+      target: ci
     environment:
       RUN_TEST: ${RUN_TEST:-true}
       RUN_PROJECT: ${RUN_PROJECT:-false}
@@ -34,4 +34,4 @@ networks:
 
 volumes:
   test-result:
-    name: ${DOCKERCOMPOSE_BUILD_VOLUME_NAME:-sistema-test-results}
+    name: ${DOCKERCOMPOSE_CI_VOLUME_NAME:-sistema-test-results}
