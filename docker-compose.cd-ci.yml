@@ -28,10 +28,6 @@ services:
   #     - 9090:9090
   #   container_name: sistema-api-${BRANCH:-develop}-ci.tjmt.jus.br
 
-networks:
-  default:
-    name: ns-sistema-ci
-
 volumes:
   test-result:
     name: ${DOCKERCOMPOSE_CI_VOLUME_NAME:-sistema-test-results}
