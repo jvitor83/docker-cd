@@ -7,7 +7,7 @@ services:
       RUN_TEST: ${RUN_TEST:-false}
       RUN_PROJECT: ${RUN_PROJECT:-true}
     deploy:
-      replicas: 2
+      replicas: 1
       resources:
         limits:
           cpus: '0.1'
