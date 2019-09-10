@@ -5,3 +5,4 @@ Dockerfile
 docker-extract
 cd-BUILD.sh
 cd-RELEASE.sh
+cd-RELEASE-DESTROY.SH

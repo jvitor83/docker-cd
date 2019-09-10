@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
   sistema-tjmt-jus-br:
-    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${BRANCH:-develop}.${VERSION:-local}-build
+    image: ${DOCKER_REGISTRY}sistema.tjmt.jus.br:${BRANCH:-develop}.${VERSION:-local}-ci
     environment:
       RUN_TEST: ${RUN_TEST:-false}
       RUN_PROJECT: ${RUN_PROJECT:-true}

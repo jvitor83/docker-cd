@@ -4,15 +4,15 @@ mkdir ./docker-extract/
 
 #Essas variaveis precisam estar na release também
 export DOCKER_REGISTRY=nexusdocker.tjmt.jus.br/dsa/teste/
-export VERSION=20190904-1
-export BRANCH=us666
+export VERSION=20190910-1
+export BRANCH=1234
 
 export SONARQUBE_URL="http://sonarqube.tjmt.jus.br"
 export SONARQUBE_LOGIN="c29b8801c173a4d9605a5eba61a069272b80dc7c"
 export ARTIFACT_STAGING_DIRECTORY="./docker-extract"
-export RUN_TEST="true"
+export RUN_TEST="false"
 export RUN_PROJECT="false"
-export RUN_SONARQUBE="true"
+export RUN_SONARQUBE="false"
 
 echo "-------------------------------------------"
 echo "Restauro pacotes e Rodo os testes"
@@ -23,11 +23,13 @@ export DOCKERCOMPOSE_BUILD_TEST_RESULT_PATH="/TestResults"
 docker-compose -f "docker-compose.yml" -f "docker-compose.cd-ci.yml" up --build --abort-on-container-exit
 #docker-compose -f "docker-compose.yml" -f "docker-compose.cd-ci.yml" push
 
-echo "Extraindo os resultados dos testes"
-docker create --name $DOCKERCOMPOSE_BUILD_CONTAINER_NAME -v $DOCKERCOMPOSE_BUILD_VOLUME_NAME:$DOCKERCOMPOSE_BUILD_TEST_RESULT_PATH busybox
-docker cp $DOCKERCOMPOSE_BUILD_CONTAINER_NAME:$DOCKERCOMPOSE_BUILD_TEST_RESULT_PATH $ARTIFACT_STAGING_DIRECTORY/TestResults
-docker rm $DOCKERCOMPOSE_BUILD_CONTAINER_NAME
-echo "-------------------------------------------"
+if [[ ${RUN_TEST} == "true" ]]; then
+    echo "Extraindo os resultados dos testes"
+    docker create --name $DOCKERCOMPOSE_BUILD_CONTAINER_NAME -v $DOCKERCOMPOSE_BUILD_VOLUME_NAME:$DOCKERCOMPOSE_BUILD_TEST_RESULT_PATH busybox
+    docker cp $DOCKERCOMPOSE_BUILD_CONTAINER_NAME:$DOCKERCOMPOSE_BUILD_TEST_RESULT_PATH $ARTIFACT_STAGING_DIRECTORY/TestResults
+    docker rm $DOCKERCOMPOSE_BUILD_CONTAINER_NAME
+    echo "-------------------------------------------"
+fi
 
 
 echo ""

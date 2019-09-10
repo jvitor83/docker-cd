@@ -11,7 +11,7 @@ ENTRYPOINT ["/entrypoint/entrypoint.sh"]
 
 
 FROM ci as build
-#Node não tem build. O build é no publish que gera os arquivos finais
+#Angular não precisa fazer nada
 
 
 FROM build as publish
