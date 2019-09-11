@@ -15,3 +15,7 @@ services:
 volumes:
   app:
     name: ${DOCKERCOMPOSE_PUBLISH_VOLUME_NAME:-sistema-extract-app}
+
+networks:
+  default:
+    name: ns-sistema-${BRANCH:-develop}-${VERSION}-publish    

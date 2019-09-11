@@ -31,3 +31,7 @@ services:
 volumes:
   test-result:
     name: ${DOCKERCOMPOSE_CI_VOLUME_NAME:-sistema-test-results}
+
+networks:
+  default:
+    name: ns-sistema-${BRANCH:-develop}-${VERSION}-ci

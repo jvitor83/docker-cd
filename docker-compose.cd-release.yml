@@ -10,3 +10,7 @@ services:
       DEPLOY_NPM: ${DEPLOY_NPM:-true}
       DEPLOY_KUBERNETES: ${DEPLOY_KUBERNETES:-true}
       DESTROY_KUBERNETES_ENVIRONMENT: ${DESTROY_KUBERNETES_ENVIRONMENT:-false}
+
+networks:
+  default:
+    name: ns-sistema-${BRANCH:-develop}-${ENVIRONMENT}-${VERSION}-release
