@@ -16,7 +16,7 @@ export RUN_SONARQUBE="false"
 
 echo "-------------------------------------------"
 echo "Restauro pacotes e Rodo os testes"
-export DOCKERCOMPOSE_BUILD_VOLUME_NAME="sistema-extract-testresults"
+export DOCKERCOMPOSE_BUILD_VOLUME_NAME="uikit-seed-extract-testresults"
 export DOCKERCOMPOSE_BUILD_CONTAINER_NAME="container-testResults"
 export DOCKERCOMPOSE_BUILD_TEST_RESULT_PATH="/TestResults"
 
@@ -35,7 +35,7 @@ fi
 echo ""
 echo "-------------------------------------------"
 echo "Compilo o projeto e crio o pacote"
-export DOCKERCOMPOSE_PUBLISH_VOLUME_NAME="sistema-extract-publish"
+export DOCKERCOMPOSE_PUBLISH_VOLUME_NAME="uikit-seed-extract-publish"
 export DOCKERCOMPOSE_PUBLISH_CONTAINER_NAME="container-publish"
 export DOCKERCOMPOSE_PUBLISH_APP_PATH="/var/release/"
 
